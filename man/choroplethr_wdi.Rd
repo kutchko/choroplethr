@@ -5,7 +5,7 @@
 \title{Create a country-level choropleth using data from the World Bank's World Development Indicators (WDI)}
 \usage{
 choroplethr_wdi(code = "SP.POP.TOTL", year = 2012, title = "",
-  num_colors = 7, zoom = NULL)
+  num_colors = 7, zoom = NULL, gradient_scale = NULL)
 }
 \arguments{
 \item{code}{The WDI code to use.}
@@ -19,6 +19,8 @@ will use a continuous scale, and a value in [2, 9] will use that many colors.}
 
 \item{zoom}{An optional list of countries to zoom in on. Must come from the "name" column in
 ?country.regions.}
+
+\item{gradient_scale}{An optional gradient scale from ggplot2. Sets num_colors to 1.}
 }
 \value{
 A choropleth.

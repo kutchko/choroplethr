@@ -5,7 +5,7 @@
 \title{Create a US County choropleth from ACS data}
 \usage{
 county_choropleth_acs(tableId, endyear = 2011, span = 5, num_colors = 7,
-  state_zoom = NULL, county_zoom = NULL)
+  state_zoom = NULL, county_zoom = NULL, gradient_scale = NULL)
 }
 \arguments{
 \item{tableId}{The id of an ACS table}
@@ -22,6 +22,8 @@ match the names of states as they appear in the "region" column of ?state.region
 
 \item{county_zoom}{An optional vector of counties to zoom in on. Elements of this vector must exactly 
 match the names of counties as they appear in the "region" column of ?county.regions.}
+
+\item{gradient_scale}{An optional gradient scale from ggplot2. Sets num_colors to 1.}
 }
 \value{
 A choropleth.

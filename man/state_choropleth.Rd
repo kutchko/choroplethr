@@ -5,7 +5,7 @@
 \title{Create a choropleth of US States}
 \usage{
 state_choropleth(df, title = "", legend = "", num_colors = 7,
-  zoom = NULL, reference_map = FALSE)
+  zoom = NULL, reference_map = FALSE, gradient_scale = NULL)
 }
 \arguments{
 \item{df}{A data.frame with a column named "region" and a column named "value".  Elements in 
@@ -22,6 +22,8 @@ will use a continuous scale. A value in [2, 9] will use that many colors.}
 match the names of states as they appear in the "region" column of ?state.regions.}
 
 \item{reference_map}{If true, render the choropleth over a reference map from Google Maps.}
+
+\item{gradient_scale}{An optional gradient scale from ggplot2. Sets num_colors to 1.}
 }
 \description{
 The map used is state.map in the package choroplethrMaps.  See state.regions in 

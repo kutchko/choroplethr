@@ -15,6 +15,7 @@ if (base::getRversion() >= "2.15.1") {
 #' will use a continuous scale. A value in [2, 9] will use that many colors. 
 #' @param zoom An optional list of states to zoom in on. Must come from the "name" column in
 #' ?state.regions.
+#' @param gradient_scale An optional gradient scale from ggplot2. Sets num_colors to 1.
 #' @return A choropleth.
 #' 
 #' @keywords choropleth, acs
@@ -33,10 +34,10 @@ if (base::getRversion() >= "2.15.1") {
 #' state_choropleth_acs("B19301", num_colors=1, zoom=c("new york", "new jersey", "connecticut"))
 #' }
 #' @importFrom acs acs.fetch geography estimate geo.make
-state_choropleth_acs = function(tableId, endyear=2011, span=5, num_colors=7, zoom=NULL)
+state_choropleth_acs = function(tableId, endyear=2011, span=5, num_colors=7, zoom=NULL, gradient_scale=NULL)
 {
   acs.data = get_acs_data(tableId, "state", endyear, span)
-  state_choropleth(acs.data[['df']], acs.data[['title']], "", num_colors, zoom)
+  state_choropleth(acs.data[['df']], acs.data[['title']], "", num_colors, zoom, gradient_scale)
 }
 
 #' Create a US County choropleth from ACS data
@@ -54,6 +55,7 @@ state_choropleth_acs = function(tableId, endyear=2011, span=5, num_colors=7, zoo
 #' match the names of states as they appear in the "region" column of ?state.regions.
 #' @param county_zoom An optional vector of counties to zoom in on. Elements of this vector must exactly 
 #' match the names of counties as they appear in the "region" column of ?county.regions.
+#' @param gradient_scale An optional gradient scale from ggplot2. Sets num_colors to 1.
 #' @return A choropleth.
 #' 
 #' @keywords choropleth, acs
@@ -83,10 +85,10 @@ state_choropleth_acs = function(tableId, endyear=2011, span=5, num_colors=7, zoo
 #' county_choropleth_acs("B19301", num_colors=1, county_zoom=nyc_county_fips$region)
 #' }
 #' @importFrom acs acs.fetch geography estimate geo.make
-county_choropleth_acs = function(tableId, endyear=2011, span=5, num_colors=7, state_zoom=NULL, county_zoom=NULL)
+county_choropleth_acs = function(tableId, endyear=2011, span=5, num_colors=7, state_zoom=NULL, county_zoom=NULL, gradient_scale=NULL)
 {
   acs.data = get_acs_data(tableId, "county", endyear, span)
-  county_choropleth(acs.data[['df']], acs.data[['title']], "", num_colors, state_zoom, county_zoom)
+  county_choropleth(acs.data[['df']], acs.data[['title']], "", num_colors, state_zoom, county_zoom, gradient_scale)
 }
 
 #' Returns a list representing American Community Survey (ACS) estimates

@@ -11,6 +11,7 @@ if (base::getRversion() >= "2.15.1") {
 #' will use a continuous scale, and a value in [2, 9] will use that many colors. 
 #' @param zoom An optional list of countries to zoom in on. Must come from the "name" column in
 #' ?country.regions.
+#' @param gradient_scale An optional gradient scale from ggplot2. Sets num_colors to 1.
 #'
 #' @examples
 #' \dontrun{
@@ -29,7 +30,7 @@ if (base::getRversion() >= "2.15.1") {
 #' @references Uses the WDI function from the WDI package by Vincent Arel-Bundock.
 #' @export
 #' @importFrom WDI WDI
-choroplethr_wdi = function(code="SP.POP.TOTL", year=2012, title="", num_colors=7, zoom=NULL)
+choroplethr_wdi = function(code="SP.POP.TOTL", year=2012, title="", num_colors=7, zoom=NULL, gradient_scale=NULL)
 {
   data(country.regions, package="choroplethrMaps", envir=environment())
   if (is.null(title))
@@ -41,5 +42,5 @@ choroplethr_wdi = function(code="SP.POP.TOTL", year=2012, title="", num_colors=7
   data = merge(data, country.regions)
   data$value = data[, names(data) == code] # choroplethr requires value column to be named "value"
   
-  country_choropleth(data, title, "", num_colors, zoom)
+  country_choropleth(data, title, "", num_colors, zoom, gradient_scale)
 }

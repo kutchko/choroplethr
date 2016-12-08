@@ -42,6 +42,7 @@ Admin1Choropleth = R6Class("Admin1Choropleth",
 #' @param zoom An optional vector of regions to zoom in on. Elements of this vector must exactly 
 #' match the names of regions as they appear in the "region" column of ?admin1.regions.
 #' @param reference_map If true, render the choropleth over a reference map from Google Maps.
+#' @param gradient_scale An optional gradient scale from ggplot2. Sets num_colors to 1.
 #' @examples
 #' \dontrun{
 #' 
@@ -82,7 +83,7 @@ Admin1Choropleth = R6Class("Admin1Choropleth",
 #' @importFrom ggplot2 scale_fill_continuous scale_colour_brewer ggplotGrob annotation_custom 
 #' @importFrom scales comma
 #' @importFrom grid unit grobTree
-admin1_choropleth = function(country.name, df, title="", legend="", num_colors=7, zoom=NULL, reference_map=FALSE)
+admin1_choropleth = function(country.name, df, title="", legend="", num_colors=7, zoom=NULL, reference_map=FALSE, gradient_scale=NULL)
 {
   if (!requireNamespace("choroplethrAdmin1", quietly = TRUE)) {
     stop("Package choroplethrAdmin1 is needed for this function to work. Please install it.", call. = FALSE)
@@ -90,8 +91,13 @@ admin1_choropleth = function(country.name, df, title="", legend="", num_colors=7
   c = Admin1Choropleth$new(country.name, df)
   c$title  = title
   c$legend = legend
-  c$set_num_colors(num_colors)
   c$set_zoom(zoom)
+  if (is.null(gradient_scale)) {
+    c$set_num_colors(num_colors)
+  } else {
+    c$set_num_colors(1)
+    c$ggplot_scale = gradient_scale
+  }
   if (reference_map) {
     c$render_with_reference_map()
   } else {

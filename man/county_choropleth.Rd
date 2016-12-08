@@ -5,7 +5,8 @@
 \title{Create a choropleth of US Counties}
 \usage{
 county_choropleth(df, title = "", legend = "", num_colors = 7,
-  state_zoom = NULL, county_zoom = NULL, reference_map = FALSE)
+  state_zoom = NULL, county_zoom = NULL, reference_map = FALSE,
+  gradient_scale = NULL)
 }
 \arguments{
 \item{df}{A data.frame with a column named "region" and a column named "value".  Elements in 
@@ -25,6 +26,8 @@ match the names of states as they appear in the "region" column of ?state.region
 match the names of counties as they appear in the "region" column of ?county.regions.}
 
 \item{reference_map}{If true, render the choropleth over a reference map from Google Maps.}
+
+\item{gradient_scale}{An optional gradient scale from ggplot2. Sets num_colors to 1.}
 }
 \description{
 The map used is county.map in the choroplethrMaps package.  See country.regions

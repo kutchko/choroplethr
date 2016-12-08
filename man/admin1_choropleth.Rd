@@ -5,7 +5,8 @@
 \title{Create an admin1-level choropleth for a specified country}
 \usage{
 admin1_choropleth(country.name, df, title = "", legend = "",
-  num_colors = 7, zoom = NULL, reference_map = FALSE)
+  num_colors = 7, zoom = NULL, reference_map = FALSE,
+  gradient_scale = NULL)
 }
 \arguments{
 \item{country.name}{The name of the country. Must exactly match how the country is named in the "country"
@@ -26,6 +27,8 @@ will use a continuous scale. A value in [2, 9] will use that many colors.}
 match the names of regions as they appear in the "region" column of ?admin1.regions.}
 
 \item{reference_map}{If true, render the choropleth over a reference map from Google Maps.}
+
+\item{gradient_scale}{An optional gradient scale from ggplot2. Sets num_colors to 1.}
 }
 \description{
 The map used comes from ?admin1.map in the choroplethrAdmin1 package. See ?get_admin_countries

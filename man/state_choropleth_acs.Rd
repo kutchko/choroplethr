@@ -5,7 +5,7 @@
 \title{Create a US State choropleth from ACS data}
 \usage{
 state_choropleth_acs(tableId, endyear = 2011, span = 5, num_colors = 7,
-  zoom = NULL)
+  zoom = NULL, gradient_scale = NULL)
 }
 \arguments{
 \item{tableId}{The id of an ACS table}
@@ -19,6 +19,8 @@ will use a continuous scale. A value in [2, 9] will use that many colors.}
 
 \item{zoom}{An optional list of states to zoom in on. Must come from the "name" column in
 ?state.regions.}
+
+\item{gradient_scale}{An optional gradient scale from ggplot2. Sets num_colors to 1.}
 }
 \value{
 A choropleth.

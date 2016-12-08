@@ -59,6 +59,7 @@ StateChoropleth = R6Class("StateChoropleth",
 #' @param zoom An optional vector of states to zoom in on. Elements of this vector must exactly 
 #' match the names of states as they appear in the "region" column of ?state.regions.
 #' @param reference_map If true, render the choropleth over a reference map from Google Maps.
+#' @param gradient_scale An optional gradient scale from ggplot2. Sets num_colors to 1.
 #' @examples
 #' \dontrun{
 #' # default parameters
@@ -107,13 +108,19 @@ StateChoropleth = R6Class("StateChoropleth",
 #' @importFrom ggplot2 scale_fill_continuous scale_colour_brewer
 #' @importFrom scales comma
 #' @importFrom grid unit
-state_choropleth = function(df, title="", legend="", num_colors=7, zoom=NULL, reference_map = FALSE)
+state_choropleth = function(df, title="", legend="", num_colors=7, zoom=NULL, reference_map = FALSE,
+    gradient_scale = NULL)
 {
   c = StateChoropleth$new(df)
   c$title  = title
   c$legend = legend
-  c$set_num_colors(num_colors)
   c$set_zoom(zoom)
+  if (is.null(gradient_scale)) {
+    c$set_num_colors(num_colors)
+  } else {
+    c$set_num_colors(1)
+    c$ggplot_scale = gradient_scale
+  }
   if (reference_map) {
     if (is.null(zoom))
     {

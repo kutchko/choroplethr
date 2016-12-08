@@ -38,6 +38,7 @@ CountryChoropleth = R6Class("CountryChoropleth",
 #' will use a continuous scale, and a value in [2, 9] will use that many colors. 
 #' @param zoom An optional vector of countries to zoom in on. Elements of this vector must exactly 
 #' match the names of countries as they appear in the "region" column of ?country.regions
+#' @param gradient_scale An optional gradient scale from ggplot2. Sets num_colors to 1.
 #' @examples
 #' # demonstrate default options
 #' data(df_pop_country)
@@ -59,12 +60,17 @@ CountryChoropleth = R6Class("CountryChoropleth",
 #' @importFrom ggplot2 scale_fill_continuous scale_colour_brewer ggplotGrob annotation_custom 
 #' @importFrom scales comma
 #' @importFrom grid unit grobTree
-country_choropleth = function(df, title="", legend="", num_colors=7, zoom=NULL)
+country_choropleth = function(df, title="", legend="", num_colors=7, zoom=NULL, gradient_scale=NULL)
 {
   c = CountryChoropleth$new(df)
   c$title  = title
   c$legend = legend
-  c$set_num_colors(num_colors)
+  if (is.null(gradient_scale)) {
+    c$set_num_colors(num_colors)
+  } else {
+    c$set_num_colors(1)
+    c$ggplot_scale = gradient_scale
+  }
   c$set_zoom(zoom)
   c$render()
 }

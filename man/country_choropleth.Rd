@@ -5,7 +5,7 @@
 \title{Create a country-level choropleth}
 \usage{
 country_choropleth(df, title = "", legend = "", num_colors = 7,
-  zoom = NULL)
+  zoom = NULL, gradient_scale = NULL)
 }
 \arguments{
 \item{df}{A data.frame with a column named "region" and a column named "value".  Elements in 
@@ -20,6 +20,8 @@ will use a continuous scale, and a value in [2, 9] will use that many colors.}
 
 \item{zoom}{An optional vector of countries to zoom in on. Elements of this vector must exactly 
 match the names of countries as they appear in the "region" column of ?country.regions}
+
+\item{gradient_scale}{An optional gradient scale from ggplot2. Sets num_colors to 1.}
 }
 \description{
 The map used is country.map in the choroplethrMaps package. See country.regions for
