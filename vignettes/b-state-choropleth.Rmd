@@ -72,3 +72,14 @@ For additional options on the `StateChoropleth` object, such as removing the sta
 
 1. for discrete scales, pass `drop=FALSE` to the scale (as above).
 2. for continuous scales, pass `limits` which encompass the minimum and maximum values for the entire dataset.
+3. alternatively, create a variable containing a ggplot2 scale and use the `gradient_scale` argument in your call to `state_choropleth`:
+
+```{r}
+?df_president_margin
+data(df_president_margin)
+
+gscale <- scale_fill_gradient2(low='red', high='blue', limits=c(-100, 100),
+                               name='margin')
+state_choropleth(df_president_margin, title = "2012 election results",
+                 gradient_scale = gscale)
+```

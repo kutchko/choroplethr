@@ -78,3 +78,4 @@ choro$render()
 
 1. for discrete scales, pass `drop=FALSE` to the scale (as above).
 2. for continuous scales, pass `limits` which encompass the minimum and maximum values for the entire dataset.
+3. alternatively, create a variable containing a ggplot2 scale and use the `gradient_scale` argument in your call to `county_choropleth`.

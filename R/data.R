@@ -38,6 +38,17 @@ NULL
 #' @author Ari Lamstein and Richard Careaga
 NULL
 
+#' A data.frame containing election result percentage margins from the 2012 US Presidential election.  
+#'
+#' @name df_president_margin
+#' @details Negative values are percent for Romney, positive values are percent for Obama.
+#' @usage data(df_president_margin)
+#' @docType data
+#' @references Taken from the FEC website on 12/6/2016.
+#' @keywords data
+#' @author Katrina Kutchko
+NULL
+
 #' A data.frame containing population estimates for US States in 2012.   
 #'
 #' @name df_pop_state
